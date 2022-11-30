@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kamar extends Model
+class pembayaran extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'tipe', 'harga', 'deskripsi', 'fasilitas', 'kebijakan', 'jumlah_kamar'
+        'nama_pelanggan', 'no_rekening', 'detail_pesanan', 'total_bayar'
     ];
 }

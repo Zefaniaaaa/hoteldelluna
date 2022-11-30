@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kamar;
+use App\Models\pembayaran;
 
-class KamarController extends Controller
+class Pembayaran_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class KamarController extends Controller
      */
     public function index()
     {
-        $table = Kamar::all();
+        $table = pembayaran::all();
         return $table;
     }
 
@@ -36,18 +36,16 @@ class KamarController extends Controller
      */
     public function store(Request $request)
     {
-        $table = Kamar::create([
-            "tipe" => $request->tipe,
-            "harga" => $request->harga,
-            "deskripsi" => $request->deskripsi,
-            "fasilitas" => $request->fasilitas,
-            "kebijakan" => $request->kebijakan,
-            "jumlah_kamar" => $request->jumlah_kamar,
+        $table = pembayaran::create([
+            "nama_pelanggan" => $request->nama_pelanggan,
+            "no_rekening" => $request->no_rekening,
+            "detail_pesanan" => $request->detail_pesanan,
+            "total_bayar" => $request->total_bayar,
         ]);
 
         return response()->json([
             'success' => 201,
-            'message' => 'Kamar Berhasil Ditambahkan!',
+            'message' => 'Pembayaran Berhasil Ditambahkan!',
             'data' => $table
         ], 201);
     }
@@ -60,7 +58,7 @@ class KamarController extends Controller
      */
     public function show($id)
     {
-        $table = Kamar::find($id);
+        $table = pembayaran::find($id);
         if ($table) {
             return response()->json([
                 'status' => 200,
@@ -94,25 +92,7 @@ class KamarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $table = Kamar::find($id);
-        if($table){
-            $table->tipe = $request->tipe ? $request->tipe : $table->tipe;
-            $table->harga = $request->harga ? $request->harga : $table->harga;
-            $table->deskripsi = $request->deskripsi ? $request->deskripsi : $table->deskripsi;
-            $table->fasilitas = $request->fasilitas ? $request->fasilitas : $table->fasilitas;
-            $table->kebijakan = $request->kebijakan ? $request->kebijakan : $table->kebijakan;
-            $table->jumlah_kamar = $request->jumlah_kamar ? $request->jumlah_kamar : $table->jumlah_kamar;
-            $table->save();
-            return response()->json([
-                'status' => 200,
-                'data' => $table
-            ], 200);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => $id . ' tidak ditemukan'
-            ], 404);
-        }
+        //
     }
 
     /**
@@ -123,7 +103,7 @@ class KamarController extends Controller
      */
     public function destroy($id)
     {
-        $table = Kamar::where('id', $id)->first();
+        $table = pembayaran::where('id', $id)->first();
         if($table){
             $table->delete();
             return response()->json([

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\ReservasiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Pembayaran_Controller;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,7 +27,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('me', [AuthController::class, 'me']);
 Route::middleware('auth:sanctum')->group(function(){
-    Route::resource('kamars', KamarController::class)->except('create', 'edit', 'show', 'index');
-    Route::resource('reservasis', ReservasiController::class)->except('create', 'edit', 'show', 'index');
+    Route::resource('kamars', KamarController::class);
+    Route::resource('reservasis', ReservasiController::class);
+    Route::resource('pembayarans', Pembayaran_Controller::class);
     Route::post('/logout', [AuthController::class, 'logout']);
 });

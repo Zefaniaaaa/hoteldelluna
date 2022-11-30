@@ -14,8 +14,8 @@ class ReservasiController extends Controller
      */
     public function index()
     {
-        $reservasi = Reservasi::all();
-        return $reservasi;
+        $table = Reservasi::all();
+        return $table;
     }
 
     /**
@@ -62,11 +62,11 @@ class ReservasiController extends Controller
      */
     public function show($id)
     {
-        $reservasi = Reservasi::find($id);
-        if ($reservasi) {
+        $table = Reservasi::find($id);
+        if ($table) {
             return response()->json([
                 'status' => 200,
-                'data' => $reservasi
+                'data' => $table
             ], 200);
         } else {
             return response()->json([
@@ -96,20 +96,20 @@ class ReservasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $reservasi = Reservasi::find($id);
-        if($reservasi){
-            $reservasi->username = $request->username ? $request->username : $reservasi->username;
-            $reservasi->email = $request->email ? $request->email : $reservasi->email;
-            $reservasi->telepon = $request->telepon ? $request->telepon : $reservasi->telepon;
-            $reservasi->tipe = $request->tipe ? $request->tipe : $reservasi->tipe;
-            $reservasi->jumlah_pesan = $request->jumlah_pesan ? $request->jumlah_pesan : $reservasi->jumlah_pesan;
-            $reservasi->check_in = $request->check_in ? $request->check_in : $reservasi->check_in;
-            $reservasi->check_out = $request->check_out ? $request->check_out : $reservasi->check_out;
-            $reservasi->to_harga = $request->to_harga ? $request->to_harga : $reservasi->to_harga;
-            $reservasi->save();
+        $table = Reservasi::find($id);
+        if($table){
+            $table->username = $request->username ? $request->username : $table->username;
+            $table->email = $request->email ? $request->email : $table->email;
+            $table->telepon = $request->telepon ? $request->telepon : $table->telepon;
+            $table->tipe = $request->tipe ? $request->tipe : $table->tipe;
+            $table->jumlah_pesan = $request->jumlah_pesan ? $request->jumlah_pesan : $table->jumlah_pesan;
+            $table->check_in = $request->check_in ? $request->check_in : $table->check_in;
+            $table->check_out = $request->check_out ? $request->check_out : $table->check_out;
+            $table->to_harga = $request->to_harga ? $request->to_harga : $table->to_harga;
+            $table->save();
             return response()->json([
                 'status' => 200,
-                'data' => $reservasi
+                'data' => $table
             ], 200);
         } else {
             return response()->json([
@@ -127,12 +127,12 @@ class ReservasiController extends Controller
      */
     public function destroy($id)
     {
-        $reservasi = Reservasi::where('id', $id)->first();
-        if($reservasi){
-            $reservasi->delete();
+        $table = Reservasi::where('id', $id)->first();
+        if($table){
+            $table->delete();
             return response()->json([
                 'status' => 200,
-                'data' => $reservasi
+                'data' => $table
             ], 200);
         } else {
             return response()->json([
